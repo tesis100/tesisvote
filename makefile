@@ -1,7 +1,7 @@
 all: build
 
 build: build-dirs createdb
-	gprbuild -d -P/home/tesis/dev/voting/voting.gpr -XLIBRARY_TYPE=static -XXMLADA_BUILD=static -XAWS_BUILD=default
+	gprbuild -d -Pvoting.gpr -XLIBRARY_TYPE=static -XXMLADA_BUILD=static -XAWS_BUILD=default
 	cd execute && make newdb
 
 build-dirs:
