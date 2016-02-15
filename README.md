@@ -33,4 +33,4 @@ Example: `Donald Trump,trump,P;VP` - Donald Trump is running for President and V
 This determines the text found at the top of the voting interface. 
 
 ####website/images
-The voting interface will search this folder for images of the candidates. Each candidate shoud have their own image as `candidateshortname.jpg` (eg `trump.jpg`). All pictures should be the same size and 100px by 100px works well.
+The voting interface will search this folder for images of the candidates. Each candidate should have their own image as `candidateshortname.jpg` (eg `trump.jpg`). All pictures should be the same size and 100px by 100px works well.
