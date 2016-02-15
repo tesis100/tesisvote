@@ -1,0 +1,130 @@
+with "aws";
+with "/usr/lib/gnat/gnatcoll_sqlite.gpr";
+--with "GNATCOLL";
+
+project Voting is
+
+   for Object_Dir use "objects/";
+   for Exec_Dir use "execute/";
+   type Build_Kind is
+      ("static", "relocatable");
+   Library_Type : Build_Kind := external ("LIBRARY_TYPE");
+   type Build_Kind1 is
+      ("static", "relocatable");
+   Xmlada_Build : Build_Kind1 := external ("XMLADA_BUILD");
+   type Build_Kind2 is
+      ("default", "relocatable");
+   Aws_Build : Build_Kind2 := external ("AWS_BUILD");
+
+   case Library_Type is
+
+      when "static" =>
+
+         case Xmlada_Build is
+
+            when "static" =>
+
+               case Aws_Build is
+
+                  when "default" =>
+                     for Source_Dirs use ("sources", "sources_db");
+                     for Main use ("export_blt.adb", "loader.adb", "voting.adb");
+
+                  when "relocatable" =>
+                     for Source_Dirs use ("sources");
+               end case;
+
+            when "relocatable" =>
+               for Source_Dirs use ("sources");
+         end case;
+
+      when "relocatable" =>
+         for Source_Dirs use ("sources");
+   end case;
+
+   package Compiler is
+
+      case Library_Type is
+
+         when "static" =>
+
+            case Xmlada_Build is
+
+               when "static" =>
+
+                  case Aws_Build is
+
+                     when "default" =>
+                        for Default_Switches ("ada") use ("-gnatw.e.Y", "-gnatVa", "-gnato", "-fstack-check", "-gnat12", "-gnata", "-gnatf", "-gnatyaAbBcCdefhIknOprtuxM120il", "-g");
+
+                     when "relocatable" =>
+
+                  end case;
+
+               when "relocatable" =>
+
+            end case;
+
+         when "relocatable" =>
+
+      end case;
+   end Compiler;
+
+   package Binder is
+
+      case Library_Type is
+
+         when "static" =>
+
+            case Xmlada_Build is
+
+               when "static" =>
+
+                  case Aws_Build is
+
+                     when "default" =>
+                        for Default_Switches ("ada") use ("-E");
+
+                     when "relocatable" =>
+
+                  end case;
+
+               when "relocatable" =>
+
+            end case;
+
+         when "relocatable" =>
+
+      end case;
+   end Binder;
+
+   package Builder is
+
+      case Library_Type is
+
+         when "static" =>
+
+            case Xmlada_Build is
+
+               when "static" =>
+
+                  case Aws_Build is
+
+                     when "default" =>
+                        for Default_Switches ("ada") use ("-j8");
+
+                     when "relocatable" =>
+
+                  end case;
+
+               when "relocatable" =>
+
+            end case;
+
+         when "relocatable" =>
+
+      end case;
+   end Builder;
+
+end Voting;
+

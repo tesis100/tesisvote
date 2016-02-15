@@ -1,0 +1,46 @@
+body {
+    background-color: black;
+}
+
+p {
+	color: lightgreen;
+	font-family: monospace;
+}
+
+@font-face {
+	font-family: newsFont;
+	src: url(BreitkopfFraktur.ttf);
+}
+
+h1 {
+	font-family: newsFont;
+	color: white;
+	font-size: 40px;
+	text-align: center;
+}
+
+h2 {
+	font-family: newsFont;
+	color: white;
+	font-size: 30px;
+	text-align: center;
+}
+
+h3 {
+	color: white;
+	font-family: monospace;
+	font-size: 20px;
+	text-align: left;
+}
+
+voteNm {
+	color: white;
+	font-size: 30px;
+	font-family: monospace;
+}
+
+#submitButton {
+	font-family: newsFont;
+	font-size: 50px;
+	width:90%;
+}

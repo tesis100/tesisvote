@@ -1,0 +1,26 @@
+| TABLE | codes         | codes                   || The voting codes   |
+| id    | AUTOINCREMENT | PK                      || Auto-generated id  |
+| code  | TEXT          | NOT NULL, INDEX, UNIQUE || voting code        |
+| valid | TEXT          | NOT NULL                || Validity of Code   |
+
+| TABLE    | positions     | positions               || Possible Positions  |
+| id       | AUTOINCREMENT | PK                      || Auto-generated id   |
+| pos_name | TEXT          | NOT NULL, INDEX, UNIQUE || Position Name       |
+| fullname | TEXT          | NOT NULL                || Position Long Name  |
+| aval_pos | INTEGER       | NOT NULL                || Positions Available |
+
+| TABLE     | candidates    | candidates              || The Election Candidates |
+| id        | AUTOINCREMENT | PK                      || Auto-generated id       |
+| name      | TEXT          | NOT NULL                || Name                    |
+| shortname | TEXT          | NOT NULL, INDEX, UNIQUE || Unique No-Space Name    |
+
+| TABLE     | candidates_nominations | candidates_nominations || The nomination Positions |
+| id        | AUTOINCREMENT          | PK                     || Auto-generated id        |
+| candidate | INTEGER                | NOT NULL               || Candidate ID             |
+| position  | INTEGER                | NOT NULL               || Position ID              |
+
+| TABLE      | votes                  | votes                  || Recording of the votes   |
+| id         | AUTOINCREMENT          | PK                     || Auto-generated id        |
+| code       | TEXT                   | NOT NULL               || Used Code                |
+| nom_id     | INTEGER                | NOT NULL               || Voted Nomination         |
+| preference | INTEGER                | NOT NULL               || Voted Preference         |

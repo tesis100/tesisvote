@@ -1,0 +1,28 @@
+server {
+	listen   443 ssl; ## listen for ipv4; this line is default and implied
+	ssl_certificate        ./ssl-cert.crt;
+	ssl_certificate_key    ./ssl-cert.key;
+
+	#root /usr/share/nginx/www;
+	root ../website;
+	index html.html;
+
+	# Make site accessible from http://localhost/
+	server_name localhost;
+
+	location / {
+		# First attempt to serve request as file, then
+		# as directory, then fall back to displaying a 404.
+		try_files $uri $uri/ /html.html;
+		# Uncomment to enable naxsi on this location
+		# include /etc/nginx/naxsi.rules
+	}
+
+	location /ws {
+        proxy_pass http://localhost:55000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_read_timeout 3600;
+    }
+}
